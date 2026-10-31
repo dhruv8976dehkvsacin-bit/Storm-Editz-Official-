@@ -1,1 +1,568 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b13">
+<title>STORM EDITS | Creative Studio</title>
+<meta name="description" content="Storm Edits - Creative video editing portfolio and studio.">
+<style>
+:root {
+  --bg:#080b13;
+  --surface:#111827;
+  --glass:rgba(255,255,255,.065);
+  --text:#f5f8ff;
+  --muted:#9aa8c0;
+  --blue:#3488ff;
+  --cyan:#48d9ff;
+  --border:rgba(255,255,255,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:Inter,system-ui,Arial,sans-serif;
+  background:var(--bg);color:var(--text);
+  overflow-x:hidden;transition:.3s;
+}
+body.light{
+  --bg:#edf3ff;--surface:#fff;
+  --glass:rgba(255,255,255,.72);
+  --text:#111827;--muted:#53627a;
+  --border:rgba(20,50,100,.15);
+}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.background-glow{
+ position:fixed;inset:0;z-index:-1;pointer-events:none;
+ background:
+ radial-gradient(ellipse at 15% 15%,rgba(20,100,255,.18),transparent 40%),
+ radial-gradient(ellipse at 85% 60%,rgba(0,190,255,.10),transparent 40%);
+}
+.container{width:min(1150px,91%);margin:auto}
+.glass{
+ background:var(--glass);
+ border:1px solid var(--border);
+ backdrop-filter:blur(22px);
+ -webkit-backdrop-filter:blur(22px);
+ box-shadow:0 12px 40px rgba(0,0,0,.15);
+}
+.navbar{
+ position:sticky;top:0;z-index:100;
+ background:rgba(8,11,19,.78);
+ backdrop-filter:blur(22px);
+ border-bottom:1px solid var(--border);
+}
+body.light .navbar{background:rgba(237,243,255,.82)}
+.nav-inner{
+ min-height:76px;display:flex;align-items:center;
+ justify-content:space-between;gap:20px;
+}
+.logo{font-size:23px;font-weight:950;letter-spacing:2px}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{
+ color:var(--muted);font-size:14px;font-weight:650;
+ transition:.2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--blue)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.icon-btn{
+ width:42px;height:42px;border:1px solid var(--border);
+ border-radius:14px;background:var(--glass);
+ color:var(--text);font-size:18px;
+}
+.menu-btn{display:none}
+.btn{
+ border:1px solid rgba(90,160,255,.4);
+ border-radius:16px;padding:13px 22px;
+ background:linear-gradient(135deg,#2678ff,#1550c9);
+ color:white;font-weight:750;display:inline-flex;
+ align-items:center;justify-content:center;gap:9px;
+ transition:.25s;box-shadow:0 8px 25px rgba(30,100,255,.2);
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(30,100,255,.35)}
+.btn-glass{background:var(--glass);color:var(--text);box-shadow:none}
+.hero{
+ min-height:660px;display:grid;place-items:center;
+ text-align:center;padding:100px 0 80px;
+}
+.eyebrow{
+ display:inline-block;padding:9px 16px;border-radius:30px;
+ color:#70b7ff;font-size:12px;letter-spacing:2px;
+ font-weight:800;margin-bottom:28px;
+}
+.hero h1{
+ font-size:clamp(48px,9vw,100px);
+ line-height:.98;letter-spacing:-5px;font-weight:950;
+}
+.gradient{
+ background:linear-gradient(90deg,#398cff,#56e1ff);
+ -webkit-background-clip:text;background-clip:text;
+ color:transparent;
+}
+.hero p{
+ max-width:620px;margin:25px auto 30px;
+ color:var(--muted);font-size:17px;line-height:1.8;
+}
+.hero-buttons{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.hero-stats{
+ display:flex;justify-content:center;gap:55px;
+ margin-top:65px;flex-wrap:wrap;
+}
+.stat strong{font-size:27px;display:block}
+.stat span{color:var(--muted);font-size:12px}
+.section{padding:90px 0}
+.section-heading{text-align:center;margin-bottom:45px}
+.section-heading small{color:var(--blue);letter-spacing:3px;font-weight:800}
+.section-heading h2{font-size:clamp(32px,5vw,52px);margin:12px 0}
+.section-heading p{color:var(--muted)}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature{
+ padding:30px;border-radius:23px;transition:.25s;
+}
+.feature:hover{transform:translateY(-6px);border-color:#3488ff}
+.feature-icon{font-size:32px;margin-bottom:20px}
+.feature h3{margin-bottom:12px}
+.feature p{color:var(--muted);line-height:1.7;font-size:14px}
+.edits-top{
+ display:flex;justify-content:space-between;gap:20px;
+ align-items:center;flex-wrap:wrap;margin-bottom:25px;
+}
+.search{
+ border:1px solid var(--border);background:var(--glass);
+ color:var(--text);padding:13px 17px;border-radius:14px;
+ outline:none;width:min(100%,270px);
+}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.filter{
+ padding:10px 18px;border-radius:30px;
+ border:1px solid var(--border);background:var(--glass);
+ color:var(--muted);
+}
+.filter.active{background:var(--blue);color:white;border-color:var(--blue)}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.video-card{border-radius:22px;overflow:hidden;transition:.25s}
+.video-card:hover{transform:translateY(-6px)}
+.video-thumb{
+ position:relative;aspect-ratio:16/10;
+ background:linear-gradient(135deg,#14284c,#101827);
+ display:grid;place-items:center;overflow:hidden;
+}
+.video-thumb video{width:100%;height:100%;object-fit:cover}
+.play{
+ position:absolute;width:58px;height:58px;border-radius:50%;
+ border:1px solid #ffffff77;background:#ffffff30;
+ color:white;font-size:22px;backdrop-filter:blur(12px);
+}
+.video-info{padding:20px}
+.video-info h3{margin-bottom:8px}
+.video-info p{font-size:13px;color:var(--muted)}
+.video-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:17px}
+.tag{font-size:11px;color:#76b9ff;font-weight:800}
+.watch{border:0;background:transparent;color:#65adff;font-weight:750}
+.empty{display:none;text-align:center;padding:35px;color:var(--muted)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.contact-info,.contact-form{padding:30px;border-radius:24px}
+.contact-info h3,.contact-form h3{font-size:24px;margin-bottom:15px}
+.contact-info p{color:var(--muted);line-height:1.7;margin-bottom:25px}
+.contact-link{
+ display:flex;align-items:center;gap:13px;
+ padding:15px;border:1px solid var(--border);
+ border-radius:15px;margin-top:12px;overflow-wrap:anywhere;
+}
+.contact-link span:first-child{font-size:22px}
+.contact-link small{display:block;color:var(--muted);margin-bottom:4px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;margin-bottom:8px;color:var(--muted)}
+.form-group input,.form-group textarea{
+ width:100%;padding:14px;border-radius:13px;
+ border:1px solid var(--border);background:var(--bg);
+ color:var(--text);outline:none;
+}
+.form-group textarea{min-height:120px;resize:vertical}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--blue)}
+.contact-form .btn{width:100%}
+footer{border-top:1px solid var(--border);padding:35px 0}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer p{font-size:13px;color:var(--muted);margin-top:8px}
+.footer-links{display:flex;gap:20px;color:var(--muted);font-size:13px}
+.modal{
+ position:fixed;inset:0;z-index:300;background:#000d;
+ display:none;place-items:center;padding:20px;
+}
+.modal.open{display:grid}
+.modal-content{
+ width:min(850px,100%);padding:18px;border-radius:22px;
+ background:#101827;border:1px solid #ffffff25;
+}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.modal video{width:100%;max-height:65vh;background:#000;border-radius:12px}
+.toast{
+ position:fixed;bottom:25px;left:50%;transform:translate(-50%,100px);
+ background:#1b2b47;color:white;padding:13px 22px;
+ border-radius:30px;z-index:500;transition:.3s;opacity:0;
+}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.top-btn{
+ position:fixed;bottom:25px;right:22px;width:45px;height:45px;
+ border-radius:50%;border:1px solid var(--border);
+ background:var(--glass);color:var(--text);
+ display:none;z-index:80;
+}
+.top-btn.show{display:block}
+@media(max-width:800px){
+ .feature-grid,.video-grid{grid-template-columns:repeat(2,1fr)}
+ .contact-grid{grid-template-columns:1fr}
+ .menu-btn{display:block}
+ .nav-links{
+  display:none;position:absolute;top:76px;left:0;right:0;
+  padding:25px;background:var(--surface);
+  border-bottom:1px solid var(--border);
+  flex-direction:column;align-items:stretch;gap:22px;
+ }
+ .nav-links.open{display:flex}
+}
+@media(max-width:540px){
+ .feature-grid,.video-grid{grid-template-columns:1fr}
+ .hero{min-height:570px}
+ .hero h1{letter-spacing:-2px}
+ .hero-stats{gap:25px}
+ .section{padding:65px 0}
+ .search{width:100%}
+ .edits-top{align-items:stretch}
+ .footer-inner{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="background-glow"></div>
+
+<header class="navbar">
+ <div class="container nav-inner">
+  <a class="logo" href="#home">STORM<span>.</span>EDITS</a>
+  <nav class="nav-links" id="navLinks">
+   <a href="#home" class="active">Home</a>
+   <a href="#about">About</a>
+   <a href="#edits">Edits</a>
+   <a href="#contact">Contact Us</a>
+  </nav>
+  <div class="nav-actions">
+   <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☼</button>
+   <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </div>
+ </div>
+</header>
+
+<main>
+<section class="hero container" id="home">
+ <div>
+  <div class="eyebrow glass">✦ CREATIVE VIDEO EDITING STUDIO</div>
+  <h1>CREATE.<br><span class="gradient">EDIT. INSPIRE.</span></h1>
+  <p>Welcome to Storm Edits. Explore creative video edits, cinematic visuals and digital storytelling.</p>
+  <div class="hero-buttons">
+   <a href="#edits" class="btn">Explore Edits ↗</a>
+   <a href="#contact" class="btn btn-glass glass">Contact Us</a>
+  </div>
+  <div class="hero-stats">
+   <div class="stat"><strong>01</strong><span>CREATIVE STUDIO</span></div>
+   <div class="stat"><strong>∞</strong><span>CREATIVE IDEAS</span></div>
+   <div class="stat"><strong>100%</strong><span>PASSION</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="section container" id="about">
+ <div class="section-heading">
+  <small>ABOUT THE STUDIO</small>
+  <h2>Beyond Ordinary <span class="gradient">Editing.</span></h2>
+  <p>Creative vision meets powerful storytelling.</p>
+ </div>
+ <div class="feature-grid">
+  <article class="feature glass">
+   <div class="feature-icon">🎬</div>
+   <h3>Cinematic Edits</h3>
+   <p>Creative visual storytelling with smooth transitions and cinematic presentation.</p>
+  </article>
+  <article class="feature glass">
+   <div class="feature-icon">⚡</div>
+   <h3>Creative Energy</h3>
+   <p>Fresh ideas, unique styles and attention to every editing detail.</p>
+  </article>
+  <article class="feature glass">
+   <div class="feature-icon">💎</div>
+   <h3>Premium Visuals</h3>
+   <p>A modern creative experience with a clean and polished visual identity.</p>
+  </article>
+ </div>
+</section>
+
+<section class="section container" id="edits">
+ <div class="section-heading">
+  <small>OUR CREATIVE WORK</small>
+  <h2>Explore The <span class="gradient">Edits.</span></h2>
+  <p>Discover videos from the Storm Edits collection.</p>
+ </div>
+ <div class="edits-top">
+  <div class="filters" id="filters">
+   <button class="filter active" data-filter="all">All</button>
+   <button class="filter" data-filter="cinematic">Cinematic</button>
+   <button class="filter" data-filter="car">Car Edits</button>
+   <button class="filter" data-filter="shorts">Shorts</button>
+  </div>
+  <input class="search" id="search" type="search" placeholder="⌕ Search edits...">
+ </div>
+
+ <div class="video-grid" id="videoGrid"></div>
+ <div class="empty" id="empty">No edits found. Try another search.</div>
+</section>
+
+<section class="section container" id="contact">
+ <div class="section-heading">
+  <small>LET'S CONNECT</small>
+  <h2>Contact <span class="gradient">Storm.</span></h2>
+  <p>Have a project or question? Get in touch.</p>
+ </div>
+ <div class="contact-grid">
+  <div class="contact-info glass">
+   <h3>Let's talk creative.</h3>
+   <p>Connect with Storm Edits through our YouTube channel or email.</p>
+   <a class="contact-link" href="https://www.youtube.com/@storm_editz-yt" target="_blank" rel="noopener">
+    <span>▶</span><span><small>YOUTUBE CHANNEL</small>@storm_editz-yt</span>
+   </a>
+   <a class="contact-link" href="mailto:stormsensai95@gmail.com">
+    <span>✉</span><span><small>EMAIL ADDRESS</small>stormsensai95@gmail.com</span>
+   </a>
+   <button class="btn btn-glass" id="copyEmail" style="margin-top:20px">Copy Email ↗</button>
+  </div>
+
+  <form class="contact-form glass" id="contactForm">
+   <h3>Send a Message</h3>
+   <div class="form-group">
+    <label for="name">Your Name</label>
+    <input id="name" required maxlength="70" placeholder="Enter your name">
+   </div>
+   <div class="form-group">
+    <label for="email">Your Email</label>
+    <input id="email" type="email" required placeholder="you@example.com">
+   </div>
+   <div class="form-group">
+    <label for="message">Your Message</label>
+    <textarea id="message" required maxlength="2000" placeholder="Write your message..."></textarea>
+   </div>
+   <button class="btn" type="submit">Send Message ↗</button>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container footer-inner">
+  <div>
+   <a class="logo" href="#home">STORM<span>.</span>EDITS</a>
+   <p>Creative editing. Powerful storytelling.</p>
+   <p>© <span id="year"></span> Storm Edits. All rights reserved.</p>
+  </div>
+  <div class="footer-links">
+   <a href="#home">Home</a><a href="#edits">Edits</a>
+   <a href="#contact">Contact</a>
+   <a href="https://www.youtube.com/@storm_editz-yt" target="_blank" rel="noopener">YouTube ↗</a>
+  </div>
+ </div>
+</footer>
+
+<div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Video player">
+ <div class="modal-content">
+  <div class="modal-head">
+   <strong id="modalTitle">Now Playing</strong>
+   <button class="icon-btn" id="closeModal" aria-label="Close player">✕</button>
+  </div>
+  <video id="mainPlayer" controls playsinline></video>
+ </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<button class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
+
+<script>
+// Add your own video URLs and titles here.
+// Demo videos are placeholders. Replace them with your own MP4 links.
+const demoVideo =
+ "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
+
+const videos = [
+ {title:"Cinematic Visual",category:"cinematic",description:"Cinematic editing showcase.",url:demoVideo},
+ {title:"Car Edit Showcase",category:"car",description:"Automotive visual showcase.",url:demoVideo},
+ {title:"Creative Short",category:"shorts",description:"Short-form editing showcase.",url:demoVideo},
+ {title:"Blue Cinematic",category:"cinematic",description:"Creative cinematic showcase.",url:demoVideo},
+ {title:"Motion Showcase",category:"shorts",description:"A short visual presentation.",url:demoVideo},
+ {title:"Automotive Motion",category:"car",description:"A creative car video showcase.",url:demoVideo}
+];
+
+const grid = document.getElementById("videoGrid");
+const search = document.getElementById("search");
+const empty = document.getElementById("empty");
+let currentFilter = "all";
+
+function renderVideos(){
+ const term = search.value.toLowerCase().trim();
+ const filtered = videos.filter(v =>
+  (currentFilter==="all" || v.category===currentFilter) &&
+  (v.title.toLowerCase().includes(term) ||
+   v.description.toLowerCase().includes(term))
+ );
+
+ grid.innerHTML = filtered.map((v) => {
+  const index = videos.indexOf(v);
+  return `
+   <article class="video-card glass">
+    <div class="video-thumb">
+     <video src="${v.url}" muted preload="metadata" playsinline></video>
+     <button class="play" data-play="${index}" aria-label="Play ${v.title}">▶</button>
+    </div>
+    <div class="video-info">
+     <h3>${escapeHTML(v.title)}</h3>
+     <p>${escapeHTML(v.description)}</p>
+     <div class="video-bottom">
+      <span class="tag">${escapeHTML(v.category.toUpperCase())}</span>
+      <button class="watch" data-play="${index}">Watch Video ↗</button>
+     </div>
+    </div>
+   </article>`;
+ }).join("");
+
+ empty.style.display = filtered.length ? "none" : "block";
+}
+
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g, char => ({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[char]));
+}
+
+document.getElementById("filters").addEventListener("click",e=>{
+ const btn=e.target.closest("[data-filter]");
+ if(!btn)return;
+ currentFilter=btn.dataset.filter;
+ document.querySelectorAll(".filter").forEach(b=>
+  b.classList.toggle("active",b===btn));
+ renderVideos();
+});
+
+search.addEventListener("input",renderVideos);
+
+const modal=document.getElementById("videoModal");
+const player=document.getElementById("mainPlayer");
+
+grid.addEventListener("click",e=>{
+ const btn=e.target.closest("[data-play]");
+ if(!btn)return;
+ const video=videos[Number(btn.dataset.play)];
+ if(!video)return;
+ document.getElementById("modalTitle").textContent=video.title;
+ player.src=video.url;
+ modal.classList.add("open");
+ player.play().catch(()=>showToast("Press play to start the video."));
+});
+
+function closePlayer(){
+ player.pause();
+ player.removeAttribute("src");
+ player.load();
+ modal.classList.remove("open");
+}
+document.getElementById("closeModal").addEventListener("click",closePlayer);
+modal.addEventListener("click",e=>{if(e.target===modal)closePlayer()});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape")closePlayer();
+});
+
+// Mobile navigation
+const navLinks=document.getElementById("navLinks");
+document.getElementById("menuBtn").addEventListener("click",()=>{
+ navLinks.classList.toggle("open");
+});
+navLinks.addEventListener("click",e=>{
+ if(e.target.closest("a"))navLinks.classList.remove("open");
+});
+
+// Theme toggle
+const themeBtn=document.getElementById("themeBtn");
+themeBtn.addEventListener("click",()=>{
+ document.body.classList.toggle("light");
+ const light=document.body.classList.contains("light");
+ themeBtn.textContent=light?"☾":"☼";
+ try{localStorage.setItem("storm-theme",light?"light":"dark")}catch(e){}
+});
+try{
+ if(localStorage.getItem("storm-theme")==="light"){
+  document.body.classList.add("light");
+  themeBtn.textContent="☾";
+ }
+}catch(e){}
+
+// Contact form opens the user's email app.
+// A static GitHub Pages website does not send email by itself.
+document.getElementById("contactForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=document.getElementById("name").value.trim();
+ const email=document.getElementById("email").value.trim();
+ const message=document.getElementById("message").value.trim();
+ if(!name||!email||!message)return;
+
+ const subject=encodeURIComponent("Storm Edits Website Contact");
+ const body=encodeURIComponent(
+  "Name: "+name+"\nEmail: "+email+"\n\nMessage:\n"+message
+ );
+ window.location.href=
+  "mailto:stormsensai95@gmail.com?subject="+subject+"&body="+body;
+ showToast("Opening your email app...");
+});
+
+function showToast(message){
+ const toast=document.getElementById("toast");
+ toast.textContent=message;
+ toast.classList.add("show");
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>toast.classList.remove("show"),2600);
+}
+
+document.getElementById("copyEmail").addEventListener("click",async()=>{
+ try{
+  await navigator.clipboard.writeText("stormsensai95@gmail.com");
+  showToast("Email copied!");
+ }catch(e){
+  showToast("Email: stormsensai95@gmail.com");
+ }
+});
+
+// Back-to-top button
+const topBtn=document.getElementById("topBtn");
+window.addEventListener("scroll",()=>{
+ topBtn.classList.toggle("show",window.scrollY>400);
+});
+topBtn.addEventListener("click",()=>{
+ window.scrollTo({top:0,behavior:"smooth"});
+});
+
+// Active navigation link
+const sections=document.querySelectorAll("main section[id]");
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   document.querySelectorAll(".nav-links a").forEach(a=>{
+    a.classList.toggle("active",
+     a.getAttribute("href")==="#"+entry.target.id);
+   });
+  }
+ });
+},{rootMargin:"-35% 0px -55% 0px"});
+sections.forEach(section=>observer.observe(section));
+
+document.getElementById("year").textContent=new Date().getFullYear();
+renderVideos();
+</script>
+</body>
+</html>
+
